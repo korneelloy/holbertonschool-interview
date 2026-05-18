@@ -62,6 +62,15 @@ void topplegrid(int grid1[3][3])
 {
 
 	int i, j, x;
+	int griddelta[3][3];
+
+	for (i = 0; i < 3; i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			griddelta[i][j] = 0;
+		}
+	}
 
 	for (i = 0; i < 3; i++)
 	{
@@ -69,31 +78,31 @@ void topplegrid(int grid1[3][3])
 		{
 			if (grid1[i][j] > 3)
 			{
-				grid1[i][j] -= 4;
+				griddelta[i][j] -= 4;
 				x = i - 1;
 				if (x >= 0)
 				{
-					grid1[x][j] += 1;
+					griddelta[x][j] += 1;
 				}
 				x = i + 1;
 				if (x < 3)
 				{
-					grid1[x][j] += 1;
+					griddelta[x][j] += 1;
 				}
 				x = j - 1;
 				if (x >= 0)
 				{
-					grid1[i][x] += 1;
+					griddelta[i][x] += 1;
 				}
 				x = j + 1;
 				if (x < 3)
 				{
-					grid1[i][x] += 1;
+					griddelta[i][x] += 1;
 				}
 			}
 		}
 	}
-	checkgrid(grid1);
+	sandpiles_sum(grid1, griddelta);
 }
 
 /**

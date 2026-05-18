@@ -81,24 +81,16 @@ void topplegrid(int grid1[3][3])
 				griddelta[i][j] -= 4;
 				x = i - 1;
 				if (x >= 0)
-				{
 					griddelta[x][j] += 1;
-				}
 				x = i + 1;
 				if (x < 3)
-				{
 					griddelta[x][j] += 1;
-				}
 				x = j - 1;
 				if (x >= 0)
-				{
 					griddelta[i][x] += 1;
-				}
 				x = j + 1;
 				if (x < 3)
-				{
 					griddelta[i][x] += 1;
-				}
 			}
 		}
 	}

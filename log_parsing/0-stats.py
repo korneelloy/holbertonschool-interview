@@ -14,8 +14,7 @@ def print_stats(total_size, status_counts):
 
 def main():
     pattern = re.compile(
-        r'^\d{1,3}(\.\d{1,3}){3} - \[.+\] '
-        r'"GET /projects/260 HTTP/1\.1" (\d+) (\d+)$'
+        r'^\S+ - \[.+\] "GET /projects/260 HTTP/1\.1" (\d+) (\d+)$'
     )
 
     valid_codes = {200, 301, 400, 401, 403, 404, 405, 500}
@@ -30,8 +29,8 @@ def main():
             if not match:
                 continue
 
-            status_code = int(match.group(2))
-            file_size = int(match.group(3))
+            status_code = int(match.group(1))
+            file_size = int(match.group(2))
 
             total_size += file_size
             if status_code in valid_codes:

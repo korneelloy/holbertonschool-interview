@@ -8,7 +8,7 @@
  * Return: power of 10
  */
 
-static unsigned long ipow10(int e)
+unsigned long ipow10(int e)
 {
 	unsigned long r = 1;
 

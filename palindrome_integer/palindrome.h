@@ -9,14 +9,4 @@
  */
 int is_palindrome(unsigned long n);
 
-/**
- * ipow10 - calculetes power of 10
- *
- * @e: number
- *
- * Return: power of 10
- */
-
-static unsigned long ipow10(int e);
-
 #endif /* PALINDROME_H */

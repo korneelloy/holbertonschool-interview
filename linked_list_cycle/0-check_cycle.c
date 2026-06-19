@@ -1,6 +1,4 @@
 #include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 #include "lists.h"
 
 /**
@@ -12,7 +10,8 @@
 
 int check_cycle(listint_t *list)
 {
-	listint_t **visited = malloc(sizeof(listint_t *));
+	listint_t **visited = NULL;
+	listint_t **new_visited;
 	int size = 0;
 	int i;
 
@@ -26,9 +25,16 @@ int check_cycle(listint_t *list)
 				return (1);
 			}
 		}
-		visited = realloc(visited, sizeof(listint_t *) * (size + 1));
-		if (visited == NULL)
+		new_visited = malloc(sizeof(listint_t *) * (size + 1));
+		if (new_visited == NULL)
+		{
+			free(visited);
 			return (0);
+		}
+		for (i = 0; i < size; i++)
+			new_visited[i] = visited[i];
+		free(visited);
+		visited = new_visited;
 		visited[size] = list;
 		size++;
 		list = list->next;

@@ -14,7 +14,36 @@ def validUTF8(data):
     """
     valid UTF-8 encoding.
     """
+    octet_suivants = 0
+
     for number in data:
-        if not isinstance(number, int) or number > 255 or number < 0:
-            return False
-    return True
+        byte = number % 256
+
+        if octet_suivants == 0:
+            # 0XXXXXXX ASCII
+            if (byte >> 7) == 0:
+                continue
+
+            # 110XXXXX
+            elif (byte >> 5) == 6:
+                octet_suivants = 1
+
+            # 1110xxxx
+            elif (byte >> 4) == 14:
+                octet_suivants = 2
+
+            # 11110xxx
+            elif (byte >> 3) == 30:
+                octet_suivants = 3
+
+            else:
+                return False
+
+        else:
+            # 10xxxxxx
+            if (byte >> 6) != 2:
+                return False
+
+            octet_suivants -= 1
+
+    return octet_suivants == 0

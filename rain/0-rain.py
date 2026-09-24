@@ -25,12 +25,9 @@ def rain(walls):
     water = 0
 
     for i in range(len(walls)-1):
-        if walls[i] < walls[i+1]:
-            continue
-        else:
-            max_to_left = max(walls[:i+2])
-            max_to_right = max(walls[i+1:])
-            bricks_in_this_wall = walls[i+1]
-            water += min(max_to_left, max_to_right) - bricks_in_this_wall
+        max_to_left = max(walls[:i+2])
+        max_to_right = max(walls[i+1:])
+        bricks_in_this_wall = walls[i+1]
+        water += min(max_to_left, max_to_right) - bricks_in_this_wall
 
     return water

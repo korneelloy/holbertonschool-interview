@@ -37,11 +37,11 @@ int search_rec(int *array, size_t size, int value)
 	if (array[mid] == value && (mid == 0 || array[mid - 1] != value))
 		return ((int)mid);
 
-	if (array[mid] == value)
-		return (search_rec(array, mid + 1, value));
+	if (size == 1)
+		return (-1);
 
-	if (array[mid] > value)
-		return (search_rec(array, mid, value));
+	if (array[mid] >= value)
+		return (search_rec(array, mid + 1, value));
 
 	idx = search_rec(array + mid + 1, size - mid - 1, value);
 	if (idx == -1)
